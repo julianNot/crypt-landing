@@ -40,17 +40,17 @@ export default {
     methods : {
         async getCrypts(){
             await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=4&page=1&sparkline=false').then(resp => resp.json())
-            .then(data => console.log(data)/* {
+            /* .then(data => console.table(data) *//* {
                 const {crypt1, crypt2, crypt3, crypt4} = data
                 console.log(data);
                 this.crypts.push(crypt1)
                 this.crypts.push(crypt2)
                 this.crypts.push(crypt3)
                 this.crypts.push(crypt4)
-            } */)
+            } )*/
         },
         mounted() {
-            return this.getCrypts()
+            return console.log(this.getCrypts())
         },
     },
 }
