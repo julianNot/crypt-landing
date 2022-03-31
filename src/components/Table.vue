@@ -71,7 +71,8 @@ export default {
 
 <style scoped>
 :root{
-    --soft-orange: #ffe9d5;
+    --orange-soft: #ffe9d5;
+    --black-solf: #201e1c;
 }
 
 .main-currency-table{
@@ -142,7 +143,7 @@ export default {
     margin: 0 auto;
     margin-top: 15px;
     padding: 8px;
-    background-color: var(--soft-orange);
+    background-color: var(--orange-soft);
     border-radius: 8px;
 }
 
@@ -169,5 +170,12 @@ span{
   background-size: cover;
   background-repeat: no-repeat;
   /* vertical-align: text-bottom; */
+}
+
+.currency-table--date p {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  font-weight: 300;
+  color: var(--black-solf);
 }
 </style>
