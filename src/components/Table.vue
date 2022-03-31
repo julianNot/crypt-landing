@@ -5,25 +5,25 @@
             <div class="currency-table--container">
                 <table>
                     <tr>
-                        <td class="table__top-left">name</td>
-                        <td class="table__top-right table__right">price</td>
+                        <td class="table__top-left">{{cryptOne.name}}</td>
+                        <td class="table__top-right table__right">{{cryptOne.current_price}} <span :class="isUp(cryptOne.price_change_percentage_24h)"></span></td>
                     </tr>
                     <tr>
-                        <td>Name1</td>
-                        <td class="table__right">price</td>
+                        <td>{{cryptTwo.name}}</td>
+                        <td class="table__right">{{cryptTwo.current_price}} <span :class="isUp(cryptTwo.price_change_percentage_24h)"></span></td>
                     </tr>
                     <tr>
-                        <td>Name2</td>
-                        <td class="table__right">price</td>
+                        <td>{{cryptThree.name}}</td>
+                        <td class="table__right">{{cryptThree.current_price}} <span :class="isUp(cryptThree.price_change_percentage_24h)"></span></td>
                     </tr>
                     <tr>
-                        <td class="table__bottom-left">Name3</td>
-                        <td class="table__bottom-right table__right">Price</td>
+                        <td class="table__bottom-left">{{cryptFour.name}}</td>
+                        <td class="table__bottom-right table__right">{{cryptFour.current_price}} <span :class="isUp(cryptFour.price_change_percentage_24h)"></span></td>
                     </tr>
                 </table>
             </div>
             <div class="currency-table--date">
-                <p><b>Actualizado:</b> Fecha</p>
+                <p><b>Actualizado:</b> {{date}}</p>
             </div>
         </div>
     </section>
@@ -34,29 +34,42 @@ export default {
     data(){
         return{
             crypts : [],
-            endList : Number
+            cryptOne : Object,
+            cryptTwo : Object,
+            cryptThree : Object,
+            cryptFour : Object,
+            date : null
         }
     },
     methods : {
         async getCrypts(){
             await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=4&page=1&sparkline=false').then(resp => resp.json())
-            /* .then(data => console.table(data) *//* {
-                const {crypt1, crypt2, crypt3, crypt4} = data
+            .then(data => {
                 console.log(data);
-                this.crypts.push(crypt1)
-                this.crypts.push(crypt2)
-                this.crypts.push(crypt3)
-                this.crypts.push(crypt4)
-            } )*/
+                this.crypts.push(data)
+                this.cryptOne = data[0]
+                this.cryptTwo = data[1]
+                this.cryptThree = data[2]
+                this.cryptFour = data[3]
+            } )
         },
-        mounted() {
-            return console.log(this.getCrypts())
-        },
+        isUp(percentaje){
+            if(percentaje > 0){
+                return "up"
+            }else{
+                return "down"
+            }
+        }
     },
+    beforeMount() {
+        let tmpMls = Date.now()
+        this.date = new Date(tmpMls).toLocaleTimeString()
+        return this.getCrypts()
+    }
 }
 </script>
 
-<style>
+<style scoped>
 :root{
     --soft-orange: #ffe9d5;
 }
@@ -131,5 +144,30 @@ export default {
     padding: 8px;
     background-color: var(--soft-orange);
     border-radius: 8px;
+}
+
+span{
+    margin-right: 10px;
+    vertical-align: text-bottom;
+}
+.up {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url(../assets/icons/trending-up.svg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.down {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url(../assets/icons/trending-down.svg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* vertical-align: text-bottom; */
 }
 </style>
