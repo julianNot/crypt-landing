@@ -1,4 +1,10 @@
 # crypto-landing-page
+A list of tecnologies and practices used within the project:
+* Mobil First
+* Fetch
+* Coingecko API
+* Vue js
+* CSS and JavaScript
 
 ## Project setup
 ```
