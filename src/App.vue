@@ -47,6 +47,15 @@
       </div>
       <Cards />
     </section>
+    <section class="bitcoin-img-background">
+      <h2>Conócelo hoy.</h2>
+    </section>
+    <section id="plans" class="main-plans-container">
+      <Plans />
+    </section>
+    <footer>
+      <FooterC />
+    </footer>
   </main>
 </template>
 
@@ -56,6 +65,8 @@ import Icon from "@/components/Icon.vue";
 import Paragraph from "@/components/Paragraph.vue";
 import Table from "@/components/Table.vue";
 import Cards from "@/views/Cards.vue"
+import Plans from "@/views/Plans.vue"
+import FooterC from "@/views/Footer.vue"
 
 /* Img and Icons */
 import headerIcon from "@/assets/images/logo.svg";
@@ -74,7 +85,9 @@ export default {
     Icon,
     Paragraph,
     Table,
-    Cards
+    Cards,
+    Plans,
+    FooterC,
   },
 };
 </script>
@@ -89,16 +102,6 @@ export default {
   --black-solf: #201e1c;
   --just-white: #ffffff;
   --off-white: #faf8f7;
-
-  /* --bitcoin-orange: #f7931a;
-  --soft-orange: #ffe9d5;
-  --secondary-blue: #1a9af7;
-  --soft-blue: #e7f5ff;
-  --warn-black: #201e1c;
-  --black: #282623;
-  --grey: #bababa;
-  --off-white: #faf8f7;
-  --just-white: #ffffff; */
 }
 
 * {
@@ -277,5 +280,38 @@ main {
   font-weight: 500;
   line-height: 1.8rem;
   color: #808080;
+}
+
+.bitcoin-img-background {
+  width: 100%;
+  min-width: 320px;
+  height: 50vh;
+  background-image: url(./assets/images/bitcoinbabyx2.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.bitcoin-img-background h2{
+  padding-top: 60px;
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 2.6rem;
+  color: var(--just-white);
+}
+
+.main-plans-container {
+  width: 100%;
+  min-width: 320px;
+  padding-bottom: 70px;
+  text-align: center;
+}
+
+footer {
+  display: flex;
+  width: 100%;
+  height: 150px;
+  background-color: var(--orange-hard);
 }
 </style>
