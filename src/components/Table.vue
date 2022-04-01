@@ -1,7 +1,7 @@
 <template>
     <section class="main-table-container">
         <div class="main-currency-table">
-            <p class="currency-table--title">Monedas</p>
+            <p class="currency-table--title">Criptomonedas</p>
             <div class="currency-table--container">
                 <table>
                     <tr>
